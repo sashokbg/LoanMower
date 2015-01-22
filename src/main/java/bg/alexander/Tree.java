@@ -1,7 +1,14 @@
 package bg.alexander;
 
-public class Tree extends YardObject{
+import java.awt.Point;
 
+public class Tree extends YardObject implements Visualizable{
+
+	public Tree(Point position) {
+		setPosition(position);
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public void visualize() {
 		System.out.print("|T|");

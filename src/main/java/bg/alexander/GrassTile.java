@@ -1,19 +1,36 @@
 package bg.alexander;
 
-public class GrassTile extends YardObject{
+import org.apache.log4j.Logger;
+
+public class GrassTile implements Visualizable{
+	private final Logger log = Logger.getLogger(GrassTile.class);
 	private YardObject object = null; 
 	private boolean isCutDown;
 
 	public GrassTile() {
-		setCutDown(false);
+		isCutDown = false;
 	}
 	
 	public boolean isEmpty() {
 		return object == null ? true : false;
 	}
 
-	public void set(YardObject object){
+	public void setYardObject(YardObject object){
 		this.object = object;
+	}
+	
+	/**
+	 * Gets the object and removes it from the current grass tile
+	 * @return
+	 */
+	public YardObject retainYardObject(){
+		YardObject toReturn = this.object;
+		this.object = null;
+		return toReturn;
+	}
+	
+	public YardObject getYardObject(){
+		return this.object;
 	}
 	
 	/**
@@ -22,24 +39,21 @@ public class GrassTile extends YardObject{
 	@Override
 	public void visualize() {
 		if(isEmpty()){
-			System.out.print("|*|");
+			if(isCutDown)
+				System.out.print("| |");
+			else
+				System.out.print("|*|");
 		}
 		else{
 			object.visualize();
 		}
 	}
 
-	@Override
-	public boolean move(MoveAction action) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	public boolean isCutDown() {
 		return isCutDown;
 	}
 
-	public void setCutDown(boolean isCutDown) {
-		this.isCutDown = isCutDown;
+	public void cutGrass() {
+		this.isCutDown = true;
 	}
 }

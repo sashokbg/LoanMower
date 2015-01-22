@@ -4,6 +4,9 @@ import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
+import bg.alexander.GrassTile;
+import bg.alexander.YardObject;
+
 public class GrassField {
 	private static Map<Point,GrassTile> grassTiles;
 	private int xSize;
@@ -39,7 +42,7 @@ public class GrassField {
 		object.setField(this);
 		Point location = object.getPosition();
 		if(location.x<xSize && location.y<ySize){
-			grassTiles.get(location).set(object);;
+			grassTiles.get(location).setYardObject(object);;
 		}
 	}
 	
@@ -52,14 +55,30 @@ public class GrassField {
 		//TODO unregister the grass field from the removed object
 	}
 	
-	void notifyMovement(YardObject object){
+	/**
+	 * Updates the position of any {@link YardObject} from position currentPosition to newPosition
+	 * 
+	 * @return
+	 * 
+	 * false : If the tile at currentPosition is empty, then no movement is performed and the method returns false
+	 * true : If the tile at currentPosition contains a movable yard object then it is moved (if no obstacles) and returns true
+	 * 
+	 * @param currentPosition
+	 * @param newPosition
+	 */
+	public GrassTile notifyMovement(Point currentPosition, Point newPosition) {
+		//TODO validations for out of range and obstacles
+		YardObject objectToMove = grassTiles.get(currentPosition).retainYardObject();
+		grassTiles.get(newPosition).setYardObject(objectToMove);
 		
+		//return the grass tile that we left, giving the possibility to perform an action on the tile (cut the grass)
+		return grassTiles.get(currentPosition);
 	}
 	
 	public void visualize(){
 		for(int i=0;i<ySize;i++){
 			for(int j=0;j<xSize;j++){
-				grassTiles.get(new Point((ySize-1)-i,j)).visualize();
+				grassTiles.get(new Point(j,(ySize-1)-i)).visualize();
 			}
 			System.out.println();
 		}

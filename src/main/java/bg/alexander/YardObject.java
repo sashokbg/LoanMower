@@ -2,14 +2,10 @@ package bg.alexander;
 
 import java.awt.Point;
 
-public abstract class YardObject {
+public abstract class YardObject implements Visualizable{
 	private Point position;
 	private GrassField field;
 	
-	/**
-	 * Primitive ASCII visualization
-	 */
-	public abstract void visualize();
 	/**
 	 * Perform a move operation on the object if it supports it
 	 * @param action
