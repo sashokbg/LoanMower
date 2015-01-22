@@ -1,5 +1,5 @@
-# LoanMower
-LoanMower Test App
+# lawn-mower
+lawn-mower Test App
 
 Comment builder et lancer l'applicaiton:
 
