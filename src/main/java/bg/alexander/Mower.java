@@ -2,11 +2,16 @@ package bg.alexander;
 
 import java.awt.Point;
 
+import org.apache.log4j.Logger;
+
 public class Mower extends YardObject {
+	private final Logger log = Logger.getLogger(Mower.class);
+	
 	private Orientation orientation;
 	private GrassField field;
 	
 	public Mower(Orientation orientation, Point point) {
+		log.info("Created a new mower");
 		setOrientation(orientation);
 		setPosition(point);
 	}
@@ -43,5 +48,10 @@ public class Mower extends YardObject {
 
 	public void setField(GrassField field) {
 		this.field = field;
+	}
+	
+	@Override
+	public String toString(){
+		return "Mower at "+super.getPosition();
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.Point;
 
 public abstract class YardObject {
 	private Point position;
+	private GrassField field;
 	
 	/**
 	 * Primitive ASCII visualization
@@ -21,5 +22,11 @@ public abstract class YardObject {
 	}
 	public void setPosition(Point position) {
 		this.position = position;
+	}
+	public GrassField getField() {
+		return field;
+	}
+	public void setField(GrassField field) {
+		this.field = field;
 	}
 }
