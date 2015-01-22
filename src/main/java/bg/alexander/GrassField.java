@@ -4,13 +4,21 @@ import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import bg.alexander.GrassTile;
 import bg.alexander.YardObject;
 
+/**
+ * 
+ * @author Alexander KIRILOV
+ *
+ */
 public class GrassField {
 	private static Map<Point,GrassTile> grassTiles;
 	private int xSize;
 	private int ySize;
+	private final Logger log = Logger.getLogger(GrassField.class);
 
 	/**
 	 * Initiate a new square grass field, given size
@@ -21,6 +29,7 @@ public class GrassField {
 		setySize(ySize);
 		grassTiles = new HashMap<Point,GrassTile>();
 		init();
+		log.info("Created a new grass field with size: "+xSize+" - "+ySize);
 	}
 	
 	private void init() {
@@ -32,12 +41,12 @@ public class GrassField {
 	}
 
 	/**
-	 * Will actually subscribe an object
+	 * Add a yard object to the field
 	 * 
 	 * 0:0 corresponds to bottom left corner
 	 * @param object (containing its coordinates {@link YardObject})
 	 */
-	public void setObject(YardObject object){
+	public void addObject(YardObject object){
 		//register the field with the given yard object
 		object.setField(this);
 		Point location = object.getPosition();
@@ -58,21 +67,28 @@ public class GrassField {
 	/**
 	 * Updates the position of any {@link YardObject} from position currentPosition to newPosition
 	 * 
-	 * @return
+	 * @return The grassTile. Can be null
 	 * 
-	 * false : If the tile at currentPosition is empty, then no movement is performed and the method returns false
-	 * true : If the tile at currentPosition contains a movable yard object then it is moved (if no obstacles) and returns true
-	 * 
-	 * @param currentPosition
+	 * @param yardObject
 	 * @param newPosition
 	 */
-	public GrassTile notifyMovement(Point currentPosition, Point newPosition) {
-		//TODO validations for out of range and obstacles
-		YardObject objectToMove = grassTiles.get(currentPosition).retainYardObject();
-		grassTiles.get(newPosition).setYardObject(objectToMove);
+	public GrassTile updatePosition(Point position, Point newPosition) {
+		GrassTile grassTile = grassTiles.get(position);
+		if(grassTile!=null){
+			YardObject yardObject = grassTile.getYardObject();
+			if(yardObject!=null){
+				GrassTile newGrassTile = grassTiles.get(newPosition);
+				if(newGrassTile!=null){
+					newGrassTile.setYardObject(yardObject);
+					//at this point we can safly update the position of the yardObject
+					yardObject.setPosition(newPosition);
+					grassTile.retainYardObject();
+				}
+			}
+		}
 		
 		//return the grass tile that we left, giving the possibility to perform an action on the tile (cut the grass)
-		return grassTiles.get(currentPosition);
+		return grassTile;
 	}
 	
 	public void visualize(){

@@ -2,11 +2,15 @@ package bg.alexander;
 
 import java.awt.Point;
 
+/**
+ * 
+ * @author Alexander KIRILOV
+ *
+ */
 public class Tree extends YardObject implements Visualizable{
 
 	public Tree(Point position) {
 		setPosition(position);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -15,7 +19,17 @@ public class Tree extends YardObject implements Visualizable{
 	}
 
 	@Override
-	public boolean move(MoveAction action) {
-		throw new UnsupportedOperationException("Trees cannot move. Unless Tree is Ent");
+	public YardObject move() {
+		throw new UnsupportedOperationException("Trees cannot move. Unless Tree is an Ent");
+	}
+
+	@Override
+	public YardObject turnLeft() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Trees cannot turn. Unless Tree is an Ent");
+	}
+
+	@Override
+	public YardObject turnRight() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Trees cannot turn. Unless Tree is an Ent");
 	}
 }

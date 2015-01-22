@@ -2,6 +2,11 @@ package bg.alexander;
 
 import org.apache.log4j.Logger;
 
+/**
+ * 
+ * @author Alexander KIRILOV
+ *
+ */
 public class GrassTile implements Visualizable{
 	private final Logger log = Logger.getLogger(GrassTile.class);
 	private YardObject object = null; 

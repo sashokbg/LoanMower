@@ -1,5 +1,10 @@
 package bg.alexander;
 
+/**
+ * 
+ * @author Alexander KIRILOV
+ *
+ */
 public interface Visualizable {
 	/**
 	 * Primitive ASCII visualization using System.out
