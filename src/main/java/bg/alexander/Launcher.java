@@ -8,13 +8,13 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 /**
- * Un launcher primitif, permettant d'exécuter l'application à partir d'un jar exécutable, en fournissant un fichier
+ * Un launcher basique, permettant d'exécuter l'application à partir d'un jar exécutable, en fournissant un fichier
  * de commandes à l'entrée.
  * 
  * Nécessite le chemin complet vers le fichier
  * 
  * <br />
- * Le syntax:
+ * La syntaxe:
  * 
  * <br />
  * 

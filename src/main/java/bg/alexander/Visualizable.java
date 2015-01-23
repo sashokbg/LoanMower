@@ -7,10 +7,9 @@ package bg.alexander;
  */
 public interface Visualizable {
 	/**
-	 * Primitive ASCII visualization using System.out
+	 * Visualisation basique ASCII
 	 * 
-	 * Note that this is a bad practice and this method should be implemented properly,
-	 * depending on the visualization technology
+	 * TODO A refaire sans sysout
 	 */
 	public void visualize();
 }

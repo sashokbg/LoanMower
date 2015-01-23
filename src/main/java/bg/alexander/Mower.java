@@ -5,7 +5,7 @@ import java.awt.Point;
 import org.apache.log4j.Logger;
 
 /**
- * Cette classe représente une tondeuse de peleuse qui implémente des movements basiques
+ * Cette classe représente une tondeuse à pelouse qui implémente des mouvements basiques
  *  
  * @see YardObject
  * @author Alexander KIRILOV
@@ -74,12 +74,12 @@ public class Mower extends YardObject implements Visualizable{
 		}
 
 		/*
-		 * invoquer la méthode de mise à jour de position. C'est la responsabilité au champ
+		 * invoquer la méthode de mise à jour de position. C'est la responsabilité du champ
 		 * de mettre à jour la position d'objet qui fait l'appel, uniquement si l'action est valide
 		 */
 		GrassTile tile = field.updateObjectPosition(currentPosition, newPosition);
 		
-		//car c'est une tondeuse, on coupe la peleuse
+		//car c'est une tondeuse, on coupe la pelouse
 		if(null!=tile){
 			tile.cutGrass();
 		}

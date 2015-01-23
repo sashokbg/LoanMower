@@ -3,7 +3,7 @@ package bg.alexander;
 /**
  * Enum d'orientation
  * 
- * Implément next() et previous() méthodes pour facilité les opérations de tournage
+ * Implément next() et previous() méthodes pour faciliter les opérations de rotation
  * 
  * @author Alexander KIRILOV
  *
@@ -26,7 +26,7 @@ public enum Orientation {
     /**
      * Exemple: le previous() de N est W
      * 
-     * @return La position précédente sur la boussole dans le sens en sens inverse des aiguilles d'une montre
+     * @return La position précédente sur la boussole dans le  sens des aiguilles d'une montre
      */
     public Orientation previous()
     {

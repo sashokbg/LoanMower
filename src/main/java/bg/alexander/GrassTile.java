@@ -3,7 +3,7 @@ package bg.alexander;
 import org.apache.log4j.Logger;
 
 /**
- * Cette classe represente un carré de peleuse qui peut contenir un objet de type {@link YardObject}
+ * Cette classe represente un carré de pelouse qui peut contenir un objet de type {@link YardObject}
  * 
  * @author Alexander KIRILOV
  */
@@ -40,7 +40,7 @@ public class GrassTile implements Visualizable{
 	}
 	
 	/**
-	 * Visualiser un champ de peleuse. Si le champ contient un objet - le visualiser à ça place 
+	 * Visualiser un champ de pelouse. Si le champ contient un objet - le visualiser à sa place 
 	 * Sysout est une mauvaise pratique est ne devrait pas être utilisé
 	 */
 	@Override

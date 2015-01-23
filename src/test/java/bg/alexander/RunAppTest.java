@@ -20,7 +20,7 @@ public class RunAppTest {
     }
 	
 	@Test
-	public void runXebiaTest(){
+	public void runMainTest(){
 		//1 2 N
 		Mower mower1 = new Mower(N,new Point(1,2));
 		field.addObject(mower1);
