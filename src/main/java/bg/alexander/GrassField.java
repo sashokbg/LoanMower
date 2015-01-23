@@ -10,6 +10,10 @@ import bg.alexander.GrassTile;
 import bg.alexander.YardObject;
 
 /**
+ * Cette classe represente un champ de peleuse, divisé en carrés de peleuse de type {@link GrassField}
+ * Chaque carré de peleuse peut contenir un objet de type {@link YardObject}
+ * 
+ * Les coordonnées 0 0 (x,y) représentent le coin inférieur gauche du champ 
  * 
  * @author Alexander KIRILOV
  *
@@ -21,8 +25,10 @@ public class GrassField {
 	private final Logger log = Logger.getLogger(GrassField.class);
 
 	/**
-	 * Initiate a new square grass field, given size
-	 * @param size
+	 * Créer un nouveau champ de taille ySize,xSize. Si xSize = 5, xMax = 4 (on compte à partir de 0) 
+	 * 
+	 * @param ySize
+	 * @param xSize
 	 */
 	public GrassField(int ySize,int xSize){
 		setxSize(xSize);
@@ -32,6 +38,9 @@ public class GrassField {
 		log.info("Created a new grass field with size: "+xSize+" - "+ySize);
 	}
 	
+	/**
+	 * Permet de remplir le chemps de carrés de peleuse vides
+	 */
 	private void init() {
 		for(int i=0;i<ySize;i++){
 			for(int j=0;j<xSize;j++){
@@ -41,22 +50,24 @@ public class GrassField {
 	}
 
 	/**
-	 * Add a yard object to the field
+	 * Ajouter un objet de type {@link YardObject} à ce champ
 	 * 
-	 * 0:0 corresponds to bottom left corner
-	 * @param object (containing its coordinates {@link YardObject})
+	 * L'objet lui même est responsable de sa position
+	 *  
+	 * @param object
 	 */
 	public void addObject(YardObject object){
-		//register the field with the given yard object
+		//s'assurer que l'objet connait this champ
 		object.setField(this);
 		Point location = object.getPosition();
 		if(location.x<xSize && location.y<ySize){
 			grassTiles.get(location).setYardObject(object);;
 		}
+		log.info("Added a new object to field : "+object);
 	}
 	
 	/**
-	 * Un-suscribe object *not yet implemented
+	 * Enlever un objet. Pas encore implémenté
 	 * 
 	 * @param object
 	 */
@@ -65,14 +76,13 @@ public class GrassField {
 	}
 	
 	/**
-	 * Updates the position of any {@link YardObject} from position currentPosition to newPosition
+	 * Mettre à jour la position d'un objet {@link YardObject} de sa <b>currentPosition</b> à sa <b>newPosition</b>
 	 * 
-	 * @return The grassTile. Can be null
-	 * 
-	 * @param yardObject
+	 * @param position
 	 * @param newPosition
+	 * @return Le carré correspondant à <b>currentPosition</b>
 	 */
-	public GrassTile updatePosition(Point position, Point newPosition) {
+	protected GrassTile updateObjectPosition(Point position, Point newPosition) {
 		GrassTile grassTile = grassTiles.get(position);
 		if(grassTile!=null){
 			YardObject yardObject = grassTile.getYardObject();
@@ -80,17 +90,23 @@ public class GrassField {
 				GrassTile newGrassTile = grassTiles.get(newPosition);
 				if(newGrassTile!=null){
 					newGrassTile.setYardObject(yardObject);
-					//at this point we can safly update the position of the yardObject
+					//à ce point on peut mettre à jour la position de l'objet déplacé
+					log.info("moving: "+yardObject+" to: "+newPosition);
 					yardObject.setPosition(newPosition);
 					grassTile.retainYardObject();
 				}
 			}
 		}
 		
-		//return the grass tile that we left, giving the possibility to perform an action on the tile (cut the grass)
+		//return le carré de peleuse qu'on a quitté, donnant la possibilité de mener une action (couper la peleuse par exemple)
 		return grassTile;
 	}
 	
+	/**
+	 * La méthode de visualisation est uniquement pour tester.
+	 * 
+	 * Sysout est une mauvaise pratique et ne devrait pas être utilisé
+	 */
 	public void visualize(){
 		for(int i=0;i<ySize;i++){
 			for(int j=0;j<xSize;j++){

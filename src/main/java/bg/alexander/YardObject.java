@@ -3,7 +3,7 @@ package bg.alexander;
 import java.awt.Point;
 
 /**
- * Abstract class representing a generic yard object that supports basic operations like moving and turning
+ * Classe abstraite qui représente un objet de "cour" générique. Peut être placé sur un carré de peleuse {@link GrassTile}
  * 
  * @author Alexander KIRILOV
  * TODO If more complex commands are introduced a command pattern should be applied in order to better manage the commands
@@ -14,19 +14,19 @@ public abstract class YardObject implements Visualizable{
 	private Orientation orientatiaon;
 	
 	/**
-	 * Perform a move operation on the object if it supports it
+	 * Mener une opération de déplecement (A) si la classe l'implémente
 	 * @return
 	 */
 	public abstract YardObject move() throws UnsupportedOperationException;
 	
 	/**
-	 * Perform a turnLeft operation on the object if it supports it
+	 * Mener une opération de tourner à gauche (G) si la classe l'implémente
 	 * @return
 	 */
 	public abstract YardObject turnLeft() throws UnsupportedOperationException;
 	
 	/**
-	 * Perform a turnRight operation on the object if it supports it
+	 * Mener une opération de tourner à droite (D) si la classe l'implémente
 	 * @return
 	 */
 	public abstract YardObject turnRight() throws UnsupportedOperationException;

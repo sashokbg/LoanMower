@@ -5,9 +5,10 @@ import java.awt.Point;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * Cette classe représente une tondeuse de peleuse qui implémente des movements basiques
+ *  
+ * @see YardObject
  * @author Alexander KIRILOV
- *
  */
 public class Mower extends YardObject implements Visualizable{
 	private final Logger log = Logger.getLogger(Mower.class);
@@ -19,6 +20,11 @@ public class Mower extends YardObject implements Visualizable{
 		setPosition(point);
 	}
 	
+	/**
+	 * Méthode primitive de visualisation.
+	 * 
+	 * Sysout est une mauvaise pratique et ne devrait pas être utilisé
+	 */
 	@Override
 	public void visualize() {
 		switch(super.getOrientatiaon()){
@@ -67,12 +73,18 @@ public class Mower extends YardObject implements Visualizable{
 		default: newPosition = currentPosition;
 		}
 
-		//update the position of the YardObject only if the GrassField returns true (valid move)
-		GrassTile tile = field.updatePosition(currentPosition, newPosition);
+		/*
+		 * invoquer la méthode de mise à jour de position. C'est la responsabilité au champ
+		 * de mettre à jour la position d'objet qui fait l'appel, uniquement si l'action est valide
+		 */
+		GrassTile tile = field.updateObjectPosition(currentPosition, newPosition);
+		
+		//car c'est une tondeuse, on coupe la peleuse
 		if(null!=tile){
 			tile.cutGrass();
 		}
 		
+		//permet d'enchaîner des commandes
 		return this;
 	}
 

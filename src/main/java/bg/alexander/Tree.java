@@ -3,6 +3,7 @@ package bg.alexander;
 import java.awt.Point;
 
 /**
+ * Un obstacle. Pas encore utilisé
  * 
  * @author Alexander KIRILOV
  *

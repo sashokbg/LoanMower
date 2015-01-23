@@ -8,9 +8,29 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 /**
+ * Un launcher primitif, permettant d'exécuter l'application à partir d'un jar exécutable, en fournissant un fichier
+ * de commandes à l'entrée.
+ * 
+ * Nécessite le chemin complet vers le fichier
+ * 
+ * <br />
+ * Le syntax:
+ * 
+ * <br />
+ * 
+ * <ul>
+ * <li>La première ligne correspond aux coordonnées du coin supérieur droit de la pelouse, celles 
+ * du coin inférieur gauche sont supposées être (0,0)</li>
+ * <li> La suite du fichier permet de piloter toutes les tondeuses qui ont été déployées. Chaque 
+ * tondeuse a deux lignes la concernant :</li>
+ * <li> la première ligne donne la position initiale de la tondeuse, ainsi que son orientation. La 
+ * position et l'orientation sont fournies sous la forme de 2 chiffres et une lettre, séparés par un espace</li>
+ * <li> la seconde ligne est une série d'instructions ordonnant à la tondeuse d'explorer la 
+ * pelouse. Les instructions sont une suite de caractères sans espaces.</li>
+ * </ul>
+ * 
  * 
  * @author Alexander KIRILOV
- *
  */
 public class Launcher {
 	private static final Logger log = Logger.getLogger(Launcher.class);
@@ -24,9 +44,7 @@ public class Launcher {
 			int ySize = lineScan.nextInt();
 			
 			GrassField field = new GrassField(ySize+1, xSize+1);
-			
-			lineScan.close();
-			
+		
 			//init mowers
 			while(scan.hasNextLine()){
 				String positionLine = scan.nextLine();

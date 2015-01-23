@@ -3,9 +3,9 @@ package bg.alexander;
 import org.apache.log4j.Logger;
 
 /**
+ * Cette classe represente un carré de peleuse qui peut contenir un objet de type {@link YardObject}
  * 
  * @author Alexander KIRILOV
- *
  */
 public class GrassTile implements Visualizable{
 	private final Logger log = Logger.getLogger(GrassTile.class);
@@ -25,7 +25,8 @@ public class GrassTile implements Visualizable{
 	}
 	
 	/**
-	 * Gets the object and removes it from the current grass tile
+	 * Renvoie l'objet et le set à null. (get and remove)
+	 * 
 	 * @return
 	 */
 	public YardObject retainYardObject(){
@@ -39,7 +40,8 @@ public class GrassTile implements Visualizable{
 	}
 	
 	/**
-	 * Visualize an empty grass tile, or if any yard object is place on top - visualize it instead
+	 * Visualiser un champ de peleuse. Si le champ contient un objet - le visualiser à ça place 
+	 * Sysout est une mauvaise pratique est ne devrait pas être utilisé
 	 */
 	@Override
 	public void visualize() {
@@ -59,6 +61,7 @@ public class GrassTile implements Visualizable{
 	}
 
 	public void cutGrass() {
+		log.info("Cutting down grass");
 		this.isCutDown = true;
 	}
 }
