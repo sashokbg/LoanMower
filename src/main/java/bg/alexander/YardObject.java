@@ -3,7 +3,7 @@ package bg.alexander;
 import java.awt.Point;
 
 /**
- * Classe abstraite qui représente un objet de "cour" générique. Peut être placé sur un carré de peleuse {@link GrassTile}
+ * Classe abstraite qui représente un objet de "cour" générique. Peut être placé sur un carré de pelouse {@link GrassTile}
  * 
  * @author Alexander KIRILOV
  * TODO If more complex commands are introduced a command pattern should be applied in order to better manage the commands

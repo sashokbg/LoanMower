@@ -10,8 +10,8 @@ import bg.alexander.GrassTile;
 import bg.alexander.YardObject;
 
 /**
- * Cette classe represente un champ de peleuse, divisé en carrés de peleuse de type {@link GrassField}
- * Chaque carré de peleuse peut contenir un objet de type {@link YardObject}
+ * Cette classe represente un champ de pelouse, divisé en carrés de pelouse de type {@link GrassField}
+ * Chaque carré de pelouse peut contenir un objet de type {@link YardObject}
  * 
  * Les coordonnées 0 0 (x,y) représentent le coin inférieur gauche du champ 
  * 
@@ -39,7 +39,7 @@ public class GrassField {
 	}
 	
 	/**
-	 * Permet de remplir le chemps de carrés de peleuse vides
+	 * Permet de remplir le chemps de carrés de pelouse vides
 	 */
 	private void init() {
 		for(int i=0;i<ySize;i++){
@@ -98,7 +98,7 @@ public class GrassField {
 			}
 		}
 		
-		//return le carré de peleuse qu'on a quitté, donnant la possibilité de mener une action (couper la peleuse par exemple)
+		//return le carré de pelouse qu'on a quitté, donnant la possibilité de mener une action (couper la pelouse par exemple)
 		return grassTile;
 	}
 	
