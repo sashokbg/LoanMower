@@ -88,7 +88,8 @@ public class GrassField {
 			YardObject yardObject = grassTile.getYardObject();
 			if(yardObject!=null){
 				GrassTile newGrassTile = grassTiles.get(newPosition);
-				if(newGrassTile!=null){
+				//cannot move the mawn lawn mower on top of obstacle
+				if(newGrassTile!=null && newGrassTile.getYardObject()==null){
 					newGrassTile.setYardObject(yardObject);
 					//à ce point on peut mettre à jour la position de l'objet déplacé
 					log.info("moving: "+yardObject+" to: "+newPosition);

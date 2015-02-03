@@ -90,4 +90,21 @@ public class RunAppTest {
 		field.visualize();
 	}
 	
+	@Test 
+	public void testObjectCollisionTeset(){
+		field.visualize();
+		Mower mower1 = new Mower(N,new Point(0,0));
+		field.addObject(mower1);
+		YardObject tree = new Tree(new Point(0,1));
+		field.addObject(tree);
+		
+		mower1.move().move();
+		field.visualize();
+		mower1.turnRight().move();
+		
+		mower1.move();
+		mower1.turnLeft();
+		
+		field.visualize();
+	}
 }
